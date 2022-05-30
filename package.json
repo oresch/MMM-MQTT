@@ -1,15 +1,15 @@
 {
   "name": "mmm-mqtt",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Show payload from subscribed MQTT message",
-  "author": "Otto Paulsen",
+  "author": "Oliver Resch",
   "repository": {
     "type": "git",
-    "url": "git://github.com/ottopaulsen/MMM-MQTT.git"
+    "url": "git://github.com/oresch/MMM-MQTT.git"
   },
   "license": "MIT",
   "dependencies": {
-    "mqtt": "^2.18.8",
+    "mqtt": "^4",
     "mqtt-packet": "^6.3.2"
   },
   "devDependencies": {
