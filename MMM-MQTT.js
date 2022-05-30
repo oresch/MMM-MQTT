@@ -227,7 +227,7 @@ Module.register("MMM-MQTT", {
         labelWrapper.style.color = colors.label;
         subWrapper.appendChild(labelWrapper);
 
-        if (sub.hideSuffix == true) {
+        if (sub.hideSuffix === true) {
           // no suffix, diplay value/string in both td's
            // Value
            tooOld = isValueTooOld(sub.maxAgeSeconds, sub.time);
