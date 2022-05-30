@@ -261,8 +261,9 @@ Module.register("MMM-MQTT", {
           suffixWrapper.className = "align-left mqtt-suffix";
           subWrapper.appendChild(suffixWrapper);
           subWrapper.style.color = colors.suffix;
-          if (setValueinnerHTML !== "#DISABLED#") wrapper.appendChild(subWrapper);
+         
         }
+        if (setValueinnerHTML !== "#DISABLED#") wrapper.appendChild(subWrapper);
       });
 
     return wrapper;
