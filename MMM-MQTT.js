@@ -62,7 +62,8 @@ Module.register("MMM-MQTT", {
       multiply: sub.multiply,
       divide: sub.divide,
       broadcast: sub.broadcast,
-      hidden: sub.hidden
+      hidden: sub.hidden,
+      hideSuffix: sub.hideSuffix
     };
   },
 
@@ -226,25 +227,41 @@ Module.register("MMM-MQTT", {
         labelWrapper.style.color = colors.label;
         subWrapper.appendChild(labelWrapper);
 
-        // Value
-        tooOld = isValueTooOld(sub.maxAgeSeconds, sub.time);
-        var valueWrapper = doc.createElement("td");
-        var setValueinnerHTML = convertValue(sub);
-        valueWrapper.innerHTML = setValueinnerHTML;
-        valueWrapper.className =
-          "align-right medium mqtt-value " + (tooOld ? "dimmed" : "bright");
-        valueWrapper.style.color = tooOld
-          ? valueWrapper.style.color
-          : colors.value;
-        subWrapper.appendChild(valueWrapper);
+        if (sub.hideSuffix == true) {
+          // no suffix, diplay value/string in both td's
+           // Value
+           tooOld = isValueTooOld(sub.maxAgeSeconds, sub.time);
+           var valueWrapper = doc.createElement("td");
+           var setValueinnerHTML = convertValue(sub);
+           valueWrapper.innerHTML = setValueinnerHTML;
+           valueWrapper.className =
+             "align-right medium mqtt-value " + (tooOld ? "dimmed" : "bright");
+           valueWrapper.style.color = tooOld
+             ? valueWrapper.style.color
+             : colors.value;
+           subWrapper.appendChild(valueWrapper);
+        }
+        else {
+          // Value
+          tooOld = isValueTooOld(sub.maxAgeSeconds, sub.time);
+          var valueWrapper = doc.createElement("td", {colspan: '2'});
+          var setValueinnerHTML = convertValue(sub);
+          valueWrapper.innerHTML = setValueinnerHTML;
+          valueWrapper.className =
+            "align-right medium mqtt-value " + (tooOld ? "dimmed" : "bright");
+          valueWrapper.style.color = tooOld
+            ? valueWrapper.style.color
+            : colors.value;
+          subWrapper.appendChild(valueWrapper);
 
-        // Suffix
-        var suffixWrapper = doc.createElement("td");
-        suffixWrapper.innerHTML = sub.suffix;
-        suffixWrapper.className = "align-left mqtt-suffix";
-        subWrapper.appendChild(suffixWrapper);
-        subWrapper.style.color = colors.suffix;
-        if (setValueinnerHTML !== "#DISABLED#") wrapper.appendChild(subWrapper);
+          // Suffix
+          var suffixWrapper = doc.createElement("td");
+          suffixWrapper.innerHTML = sub.suffix;
+          suffixWrapper.className = "align-left mqtt-suffix";
+          subWrapper.appendChild(suffixWrapper);
+          subWrapper.style.color = colors.suffix;
+          if (setValueinnerHTML !== "#DISABLED#") wrapper.appendChild(subWrapper);
+        }
       });
 
     return wrapper;
