@@ -229,17 +229,18 @@ Module.register("MMM-MQTT", {
 
         if (sub.hideSuffix) {
           // no suffix, diplay value/string in both td's
-           // Value
-           tooOld = isValueTooOld(sub.maxAgeSeconds, sub.time);
-           var valueWrapper = doc.createElement("td", {colspan: '2'});
-           var setValueinnerHTML = convertValue(sub);
-           valueWrapper.innerHTML = setValueinnerHTML;
-           valueWrapper.className =
-             "align-right medium mqtt-value " + (tooOld ? "dimmed" : "bright");
-           valueWrapper.style.color = tooOld
-             ? valueWrapper.style.color
-             : colors.value;
-           subWrapper.appendChild(valueWrapper);
+          // Value
+          tooOld = isValueTooOld(sub.maxAgeSeconds, sub.time);
+          var valueWrapper = doc.createElement("td");
+          var setValueinnerHTML = convertValue(sub);
+          valueWrapper.innerHTML = setValueinnerHTML;
+          valueWrapper.className =
+            "align-right medium mqtt-value " + (tooOld ? "dimmed" : "bright");
+          valueWrapper.style.color = tooOld
+            ? valueWrapper.style.color
+            : colors.value;
+          valueWrapper.setAttribute('colspan', '2')
+          subWrapper.appendChild(valueWrapper);
         }
         else {
           // Value
