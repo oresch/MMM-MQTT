@@ -227,11 +227,11 @@ Module.register("MMM-MQTT", {
         labelWrapper.style.color = colors.label;
         subWrapper.appendChild(labelWrapper);
 
-        if (sub.hideSuffix === true) {
+        if (sub.hideSuffix) {
           // no suffix, diplay value/string in both td's
            // Value
            tooOld = isValueTooOld(sub.maxAgeSeconds, sub.time);
-           var valueWrapper = doc.createElement("td");
+           var valueWrapper = doc.createElement("td", {colspan: '2'});
            var setValueinnerHTML = convertValue(sub);
            valueWrapper.innerHTML = setValueinnerHTML;
            valueWrapper.className =
@@ -244,7 +244,7 @@ Module.register("MMM-MQTT", {
         else {
           // Value
           tooOld = isValueTooOld(sub.maxAgeSeconds, sub.time);
-          var valueWrapper = doc.createElement("td", {colspan: '2'});
+          var valueWrapper = doc.createElement("td");
           var setValueinnerHTML = convertValue(sub);
           valueWrapper.innerHTML = setValueinnerHTML;
           valueWrapper.className =
