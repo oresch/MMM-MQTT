@@ -63,7 +63,8 @@ Module.register("MMM-MQTT", {
       divide: sub.divide,
       broadcast: sub.broadcast,
       hidden: sub.hidden,
-      hideSuffix: sub.hideSuffix
+      hideSuffix: sub.hideSuffix,
+      id: sub.id
     };
   },
 
@@ -226,7 +227,6 @@ Module.register("MMM-MQTT", {
         labelWrapper.className = "align-left mqtt-label";
         labelWrapper.style.color = colors.label;
         subWrapper.appendChild(labelWrapper);
-console.log(sub.hideSuffix)
         if (sub.hideSuffix) {
           // no suffix, diplay value/string in both td's
           // Value
@@ -235,7 +235,7 @@ console.log(sub.hideSuffix)
           var setValueinnerHTML = convertValue(sub);
           valueWrapper.innerHTML = setValueinnerHTML;
           valueWrapper.className =
-            "align-right medium mqtt-value " + (tooOld ? "dimmed" : "bright");
+            `align-right medium mqtt-value value_${sub.id} ${tooOld ? "dimmed" : "bright"}`;
           valueWrapper.style.color = tooOld
             ? valueWrapper.style.color
             : colors.value;
@@ -249,7 +249,7 @@ console.log(sub.hideSuffix)
           var setValueinnerHTML = convertValue(sub);
           valueWrapper.innerHTML = setValueinnerHTML;
           valueWrapper.className =
-            "align-right medium mqtt-value " + (tooOld ? "dimmed" : "bright");
+          `align-right medium mqtt-value value_${sub.id} ${tooOld ? "dimmed" : "bright"}`;
           valueWrapper.style.color = tooOld
             ? valueWrapper.style.color
             : colors.value;
@@ -258,7 +258,7 @@ console.log(sub.hideSuffix)
           // Suffix
           var suffixWrapper = doc.createElement("td");
           suffixWrapper.innerHTML = sub.suffix;
-          suffixWrapper.className = "align-left mqtt-suffix";
+          suffixWrapper.className = `align-left mqtt-suffix suffix_${sub.id}`;
           subWrapper.appendChild(suffixWrapper);
           subWrapper.style.color = colors.suffix;
          
