@@ -226,7 +226,7 @@ Module.register("MMM-MQTT", {
         labelWrapper.className = "align-left mqtt-label";
         labelWrapper.style.color = colors.label;
         subWrapper.appendChild(labelWrapper);
-
+console.log(sub.hideSuffix)
         if (sub.hideSuffix) {
           // no suffix, diplay value/string in both td's
           // Value
