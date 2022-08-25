@@ -227,10 +227,11 @@ Module.register("MMM-MQTT", {
         labelWrapper.className = "align-left mqtt-label";
         labelWrapper.style.color = colors.label;
         subWrapper.appendChild(labelWrapper);
+        tooOld = isValueTooOld(sub.maxAgeSeconds, sub.time);
+
         if (sub.hideSuffix) {
           // no suffix, diplay value/string in both td's
           // Value
-          tooOld = isValueTooOld(sub.maxAgeSeconds, sub.time);
           var valueWrapper = doc.createElement("td");
           var setValueinnerHTML = convertValue(sub);
           valueWrapper.innerHTML = setValueinnerHTML;
@@ -244,12 +245,11 @@ Module.register("MMM-MQTT", {
         }
         else {
           // Value
-          tooOld = isValueTooOld(sub.maxAgeSeconds, sub.time);
           var valueWrapper = doc.createElement("td");
           var setValueinnerHTML = convertValue(sub);
           valueWrapper.innerHTML = setValueinnerHTML;
           valueWrapper.className =
-          `align-right medium mqtt-value value_${sub.id} ${tooOld ? "dimmed" : "bright"}`;
+            `align-right medium mqtt-value value_${sub.id} ${tooOld ? "dimmed" : "bright"}`;
           valueWrapper.style.color = tooOld
             ? valueWrapper.style.color
             : colors.value;
@@ -259,9 +259,8 @@ Module.register("MMM-MQTT", {
           var suffixWrapper = doc.createElement("td");
           suffixWrapper.innerHTML = sub.suffix;
           suffixWrapper.className = `align-left mqtt-suffix suffix_${sub.id}`;
-          subWrapper.appendChild(suffixWrapper);
           subWrapper.style.color = colors.suffix;
-         
+          subWrapper.appendChild(suffixWrapper);
         }
         if (setValueinnerHTML !== "#DISABLED#") wrapper.appendChild(subWrapper);
       });
